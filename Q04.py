@@ -1,26 +1,21 @@
-modelos = []
-consumos = []
+listaCarro = []
+listaConsumo = []
 
-for i in range(1, 6):
-    print('Veículo %d' % i)
-    modelos.append(input('Nome: '))
-    consumos.append(float(input('Km por litro: ')))
+while len(listaCarro) < 5:
+    listaCarro.append(input('Digite o nome do carro: '))
+    listaConsumo.append(float(input('Digite o consumo do carro (km por litro): ')))
+    print('novos dados inseridos\n')
 
-print('Relatório Final')
-cont, custo = 0, 0
-gasto = 0
-menorModelo = ''
-menor = 0
-for m in modelos:
-    custo = 1000 / consumos[cont]
-    gasto = custo * 4.99
-    #print('%s      - %.1f  -  %.1f litros  - R$ %.2f' % (m, consumos[cont], consumos, gasto))
-    if cont == 0:
-        menor = custo
-        menorModelo = m
-    if menor < custo:
-        menor = custo
-        menorModelo = m
-    cont += 1
-print('O menor consumo é do %s.' % (menorModelo))
+results = ''
+valor_gas = 4.99
+total_km = 1000
+for j, c in enumerate(listaCarro):
+    print('Veiculo {}'.format(j+1))
+    print('Nome: {}'.format(c))
+    print('Km por litro: {}\n'.format(listaConsumo[j]))
 
+    consumo_l = round(total_km/listaConsumo[j], 2)
+    results += 'O carro {} consume {}L e custará $R{} quando fizer {}km\n'.format(c, consumo_l, round(consumo_l*valor_gas, 2), total_km)
+
+print('O carro mais económico é o {}'.format(listaCarro[listaConsumo.index(max(listaConsumo))])) # descobrir na listaCarro o carro cujo o indice e o mesmo do que o indice do maior valor na listaConsumo
+print(results)
